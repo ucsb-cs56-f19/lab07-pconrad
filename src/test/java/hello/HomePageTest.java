@@ -15,14 +15,23 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(WebController.class)
 public class HomePageTest {
 
     @Autowired
     private MockMvc mvc;
+
+    @MockBean
+    private AuthControllerAdvice aca;
+
+    @MockBean
+    private ClientRegistrationRepository crr;
 
     @Test
     public void getHomePage_ContentType() throws Exception {
@@ -30,7 +39,6 @@ public class HomePageTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
     }
-
 
     @Test
     public void getHomePage_BootstrapLoaded() throws Exception {
@@ -45,7 +53,6 @@ public class HomePageTest {
         }
     }
 
-
     @Test
     public void getHomePage_hasCorrectTitle() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
@@ -53,7 +60,6 @@ public class HomePageTest {
                 .andExpect(xpath("//title").exists())
                 .andExpect(xpath("//title").string("CS56 Spring Boot Practice App"));
     }
-
 
     @Test
     public void getHomePage_hasCorrectBrand() throws Exception {
