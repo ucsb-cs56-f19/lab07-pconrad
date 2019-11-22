@@ -26,7 +26,7 @@ public class AuthControllerAdvice {
     @ModelAttribute("login")
     public String getLogin(OAuth2AuthenticationToken token){
         if (token == null) return "";
-        return token.getPrincipal().getAttributes().get("login").toString();
+        return token2login(token);
     }
 
     @ModelAttribute("isMember")
@@ -41,5 +41,8 @@ public class AuthControllerAdvice {
     @ModelAttribute("role")
     public String getRole(OAuth2AuthenticationToken token){
         return membershipService.role(token);
+    }
+    private String token2login(OAuth2AuthenticationToken token) {
+        return token.getPrincipal().getAttributes().get("login").toString();
     }
 }
