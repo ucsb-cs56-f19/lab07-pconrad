@@ -19,6 +19,7 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import hello.BootstrapLiterals;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(WebController.class)
@@ -67,5 +68,13 @@ public class HomePageTest {
                 .andExpect(status().isOk())
                 .andExpect(xpath("/html/body/div/nav/a").exists())
                 .andExpect(xpath("/html/body/div/nav/a").string("lab07"));
+    }
+
+    @Test
+    public void getHomePage_hasUsersLink() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
+                .andExpect(status().isOk())
+                .andExpect(xpath("/html/body/div/nav/div/ul[1]/li[3]/a").exists())
+                .andExpect(xpath("/html/body/div/nav/div/ul[1]/li[3]/a").string("Users"));
     }
 }
