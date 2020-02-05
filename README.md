@@ -39,6 +39,13 @@ A simple Spring Boot webapp using:
 
 # Running on Heroku.
 
+First, when running on Heroku, you must define a configuration variable as follows:
+
+* `MAVEN_SETTINGS_PATH` should be set equal to `heroku.xml`
+* `heroku.xml` should be a file that exists in the root of the repository that contains
+  the necessary XML to configure `heroku` as the active profile.
+  (See: <https://devcenter.heroku.com/articles/using-a-custom-maven-settings-xml#defining-the-maven_settings_path-config-variable> )
+
 To run on Heroku, you must go BACK to GitHub and set up a DIFFERENT client id and client secret than the one you used for
 localhost.
 
