@@ -274,6 +274,9 @@
     <profiles>
         <profile>
             <id>localhost</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <resources>
                     <resource>
@@ -294,9 +297,6 @@
         </profile>
         <profile>
             <id>heroku</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <build>
                 <resources>
                     <resource>
