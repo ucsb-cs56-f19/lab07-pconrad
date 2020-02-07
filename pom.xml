@@ -275,7 +275,10 @@
         <profile>
             <id>localhost</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>env.ACTIVE_PROFILE</name>
+                    <value>localhost</value>
+                </property>
             </activation>
             <build>
                 <resources>
@@ -297,6 +300,12 @@
         </profile>
         <profile>
             <id>heroku</id>
+            <activation>
+                <property>
+                    <name>env.ACTIVE_PROFILE</name>
+                    <value>heroku</value>
+                </property>
+            </activation>
             <build>
                 <resources>
                     <resource>
